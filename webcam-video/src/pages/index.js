@@ -9,9 +9,9 @@ export default function Home() {
         <Link href="/game">
           <button class="border rounded-lg border-black p-2 w-48">Play As Guest</button>
         </Link>
-        <Link href="/signIn">
+        {/* <Link href="/signIn">
           <button class="border rounded-lg border-black p-2 w-48">Login and Play</button>
-        </Link>
+        </Link> */}
       </div>
     </>
   )

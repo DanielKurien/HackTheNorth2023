@@ -14,7 +14,6 @@ function CameraComponent() {
     const runHandpose = async () => {
       const net = await handpose.load();
       console.log('Handpose model loaded.');
-      // Loop and detect hands
       setInterval(() => {
         detect(net);
       }, 100);
@@ -42,13 +41,13 @@ function CameraComponent() {
 
         // Make detections
         const hand = await net.estimateHands(video);
-        console.log(hand);
+        //console.log(hand);
 
         if (hand.length > 0) {
           const GE = new fp.GestureEstimator([
             fp.Gestures.VictoryGesture,
             fp.Gestures.ThumbsUpGesture,
-            ...gestures,
+            ...gestures
           ]);
 
           const gesture = await GE.estimate(hand[0].landmarks, 8);
