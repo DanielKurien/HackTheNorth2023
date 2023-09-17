@@ -6,10 +6,13 @@ import { drawHand } from './utilities';
 import * as fp from 'fingerpose';
 import { gestures, names } from './gestures';
 
-function CameraComponent({guess}) {
+function CameraComponent(props) {
+
+  const { setState } = props;
+
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-  
+
   const runHandpose = async () => {
     const net = await handpose.load();
     console.log("Handpose model loaded.");
@@ -64,9 +67,14 @@ function CameraComponent({guess}) {
           // setEmoji(gesture.gestures[maxConfidence].name);
           
           console.log(gesture.gestures[maxConfidence].name);
+          // if(gesture.gestures[maxConfidence].name == names[ind].guessName) {
+          //   await increment();
+          //   console.log("Guess: " + names[ind].guessName);
+          //   //change result
+          // }
+          await setState(gesture.gestures[maxConfidence].name);
         }
       }
-
       // Draw mesh
       const ctx = canvasRef.current.getContext("2d");
       drawHand(hand, ctx);
@@ -79,7 +87,7 @@ function CameraComponent({guess}) {
     <div>
       <Webcam
         ref={webcamRef}
-        mirrored={true}
+        // mirrored={true}
         style={{
           position: 'absolute',
           marginLeft: 'auto',

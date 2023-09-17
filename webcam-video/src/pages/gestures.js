@@ -1,6 +1,6 @@
 import * as fp from 'fingerpose';
 
-const thumbsDownGesture = new fp.GestureDescription('thumbs_down');
+const thumbsDownGesture = new fp.GestureDescription('Thumbs Down');
 
 thumbsDownGesture.addCurl(fp.Finger.Thumb, fp.FingerCurl.NoCurl);
 thumbsDownGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.VerticalDown, 1.0);
@@ -12,7 +12,7 @@ for (let finger of [fp.Finger.Index, fp.Finger.Middle, fp.Finger.Ring, fp.Finger
     thumbsDownGesture.addCurl(finger, fp.FingerCurl.HalfCurl, 0.9);
   }
 
-const hiFiveGesture = new fp.GestureDescription('hi_five');
+const hiFiveGesture = new fp.GestureDescription('Hi Five!');
 
 hiFiveGesture.addCurl(fp.Finger.Thumb, fp.FingerCurl.NoCurl, 1);
 hiFiveGesture.addCurl(fp.Finger.Index, fp.FingerCurl.NoCurl, 1);
@@ -26,7 +26,7 @@ hiFiveGesture.addDirection(fp.Finger.Middle, fp.FingerDirection.VerticalUp, 1);
 hiFiveGesture.addDirection(fp.Finger.Ring, fp.FingerDirection.DiagonalUpLeft, 1); 
 hiFiveGesture.addDirection(fp.Finger.Pinky, fp.FingerDirection.DiagonalUpLeft, 1);
 
-const loveYouGesture = new fp.GestureDescription('i_love_you'); 
+const loveYouGesture = new fp.GestureDescription('ASL I Love You'); 
 
 loveYouGesture.addCurl(fp.Finger.Thumb, fp.FingerCurl.NoCurl, 1.5)
 // loveYouGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.HorizontalLeft, 0.25);
@@ -47,4 +47,4 @@ for(let finger of [fp.Finger.Middle, fp.Finger.Ring]){
 
 export const gestures = [hiFiveGesture, thumbsDownGesture, loveYouGesture, fp.Gestures.VictoryGesture, fp.Gestures.ThumbsUpGesture]
 
-export const names = ["Hi Five!", "Thumbs Down :(", "Rock Star", "Peace", "Thumbs Up :)"]
+export const names = [{displayName: "Hi Five!", guessName: "hi_five"}, {displayName: "Thumbs Down :(", guessName: "thumbs_down"} , {displayName: "Rock Star", guessName: "i_love_you"}, {displayName: "Peace", guessName: "victory"}, {displayName: "Thumbs Up :)", guessName: "thumbs_up"}]
