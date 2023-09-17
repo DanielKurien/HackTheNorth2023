@@ -2,17 +2,15 @@ import * as fp from 'fingerpose';
 
 const thumbsDownGesture = new fp.GestureDescription('thumbs_down');
 
-thumbsDownGesture.addCurl(fp.Finger.Thumb, fp.FingerCurl.NoCurl, 1);
-thumbsDownGesture.addCurl(fp.Finger.Index, fp.FingerCurl.FullCurl, 0.5);
-thumbsDownGesture.addCurl(fp.Finger.Middle, fp.FingerCurl.FullCurl, 0.5);
-thumbsDownGesture.addCurl(fp.Finger.Ring, fp.FingerCurl.FullCurl, 0.5);
-thumbsDownGesture.addCurl(fp.Finger.Pinky, fp.FingerCurl.FullCurl, 0.5);
+thumbsDownGesture.addCurl(fp.Finger.Thumb, fp.FingerCurl.NoCurl);
+thumbsDownGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.VerticalDown, 1.0);
+thumbsDownGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.DiagonalDownLeft, 0.9);
+thumbsDownGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.DiagonalDownRight, 0.9);
 
-thumbsDownGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.DiagonalDownLeft, 0.5);
-thumbsDownGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.HorizontalLeft, 1.0);
-thumbsDownGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.HorizontalLeft, 1.0);
-thumbsDownGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.HorizontalLeft, 1.0);
-thumbsDownGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.HorizontalLeft, 1.0);
+for (let finger of [fp.Finger.Index, fp.Finger.Middle, fp.Finger.Ring, fp.Finger.Pinky]) {
+    thumbsDownGesture.addCurl(finger, fp.FingerCurl.FullCurl, 1.0);
+    thumbsDownGesture.addCurl(finger, fp.FingerCurl.HalfCurl, 0.9);
+  }
 
 const hiFiveGesture = new fp.GestureDescription('hi_five');
 
@@ -22,24 +20,31 @@ hiFiveGesture.addCurl(fp.Finger.Middle, fp.FingerCurl.NoCurl, 1);
 hiFiveGesture.addCurl(fp.Finger.Ring, fp.FingerCurl.NoCurl, 1);
 hiFiveGesture.addCurl(fp.Finger.Pinky, fp.FingerCurl.NoCurl, 1);
 
-hiFiveGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.DiagonalUpLeft, 0.5);
-hiFiveGesture.addDirection(fp.Finger.Index, fp.FingerDirection.DiagonalUpLeft, 0.5);
+hiFiveGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.DiagonalUpRight, 1);
+hiFiveGesture.addDirection(fp.Finger.Index, fp.FingerDirection.DiagonalUpRight, 1);
 hiFiveGesture.addDirection(fp.Finger.Middle, fp.FingerDirection.VerticalUp, 1);
-hiFiveGesture.addDirection(fp.Finger.Ring, fp.FingerDirection.DiagonalUpRight, 0.5); 
-hiFiveGesture.addDirection(fp.Finger.Pinky, fp.FingerDirection.DiagonalUpRight, 0.5);
+hiFiveGesture.addDirection(fp.Finger.Ring, fp.FingerDirection.DiagonalUpLeft, 1); 
+hiFiveGesture.addDirection(fp.Finger.Pinky, fp.FingerDirection.DiagonalUpLeft, 1);
 
-const closedFistGesture = new fp.GestureDescription('closed_fist');
+const loveYouGesture = new fp.GestureDescription('i_love_you'); 
 
-closedFistGesture.addCurl(fp.Finger.Thumb, fp.FingerCurl.FullCurl, 2);
-closedFistGesture.addCurl(fp.Finger.Index, fp.FingerCurl.FullCurl, 2);
-closedFistGesture.addCurl(fp.Finger.Middle, fp.FingerCurl.FullCurl, 2);
-closedFistGesture.addCurl(fp.Finger.Ring, fp.FingerCurl.FullCurl, 2);
-closedFistGesture.addCurl(fp.Finger.Pinky, fp.FingerCurl.FullCurl, 2);
+loveYouGesture.addCurl(fp.Finger.Thumb, fp.FingerCurl.NoCurl, 1.5)
+// loveYouGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.HorizontalLeft, 0.25);
+loveYouGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.DiagonalUpRight, 0.5);
 
-closedFistGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.VerticalUp, 0.5);
-closedFistGesture.addDirection(fp.Finger.Index, fp.FingerDirection.VerticalDown, 0.5);
-closedFistGesture.addDirection(fp.Finger.Middle, fp.FingerDirection.VerticalUp, 1);
-closedFistGesture.addDirection(fp.Finger.Ring, fp.FingerDirection.DiagonalUpRight, 0.5); 
-closedFistGesture.addDirection(fp.Finger.Pinky, fp.FingerDirection.DiagonalUpRight, 0.5);
+// Index
+loveYouGesture.addCurl(fp.Finger.Index, fp.FingerCurl.NoCurl, 1)
+loveYouGesture.addDirection(fp.Finger.Index, fp.FingerDirection.VerticalUp, 1);
 
-export const gestures = [thumbsDownGesture, hiFiveGesture, closedFistGesture]
+// Pinky
+loveYouGesture.addCurl(fp.Finger.Pinky, fp.FingerCurl.NoCurl, 1.0)
+loveYouGesture.addDirection(fp.Finger.Pinky, fp.FingerDirection.VerticalUp, 1);
+
+for(let finger of [fp.Finger.Middle, fp.Finger.Ring]){
+    loveYouGesture.addCurl(finger, fp.FingerCurl.FullCurl, 1); 
+    loveYouGesture.addDirection(finger, fp.FingerDirection.VerticalUp, 1);
+}
+
+export const gestures = [hiFiveGesture, thumbsDownGesture, loveYouGesture, fp.Gestures.VictoryGesture, fp.Gestures.ThumbsUpGesture]
+
+export const names = ["Hi Five!", "Thumbs Down :(", "Rock Star", "Peace", "Thumbs Up :)"]
